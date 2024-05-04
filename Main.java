@@ -14,10 +14,25 @@ public class Main {
             System.err.println(e.getMessage());
         }
 
-        int result = MathUtils.add(30, 54);
-        System.out.println("Wynik dodawania: " + result);
-
-        Messenger messenger = new EmailMessenger();
-        messenger.sendMessage("Wynik dodawania liczb 30 i 54 to: " + result);
+        Person[] people = new Person[5];
+        int b = 10;
+    
+        try {
+            people[0] = new Person("John Doe", 30);
+            people[1] = new Person("Adam Kowalski", 20);
+            people[2] = new Person("Bartek Nowak", 40);
+            people[3] = new Person("Czarek Nowacki", 35);
+            people[4] = new Person("Daniel Wysocki", 26);
+    
+            for (Person person : people) {
+                int value = MathUtils.add(person.getAge(), b);
+                System.out.println("Wiek " + person.getName() + ": " + value);
+    
+                Messenger messenger = new EmailMessenger();
+                messenger.sendMessage("Wiek " + person.getName() + " to: " + value);
+            }
+        } catch (InvalidAgeException e) {
+            System.err.println("Wiek jest nieprawidłowy: " + e.getMessage());
+        }
     }
 }
